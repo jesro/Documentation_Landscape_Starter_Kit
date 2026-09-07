@@ -56,8 +56,16 @@ Not every stage requires a permanent artifact.
 
 ## Folder model
 
+The starter kit intentionally adds `00_System/` as a system/control layer for the KnowledgeBase
+itself. This is an organizational layer, not a new documentation artifact category.
+
+That makes the kit **15 top-level areas**: `00_System/` plus the 14 knowledge-oriented areas below.
+`00_System/` contains the rules, lifecycle model, naming/metadata conventions, indexes, and the
+Governance / Project_Product subfolders.
+
 ```text
 KnowledgeBase/
+├── 00_System/            # KnowledgeBase rules, lifecycle, metadata, indexes, governance
 ├── 01_Context/
 ├── 02_Requirements/
 ├── 03_Architecture/
@@ -71,8 +79,26 @@ KnowledgeBase/
 ├── 11_References/
 ├── 12_Glossary/
 ├── 13_Traceability/
-└── 14_Archive/          # optional; add when active navigation becomes cluttered
+└── 14_Archive/            # optional; add when active navigation becomes cluttered
 ```
+
+### `00_System/` contents
+
+```text
+00_System/
+├── ADR_LIFECYCLE.md
+├── ARTIFACT_INDEX.md
+├── CONVERSATION_TO_KNOWLEDGE.md
+├── DOCUMENTATION_RULES.md
+├── EXAMPLE_INDEX.md
+├── LIFECYCLE_MODEL.md
+├── NAMING_AND_METADATA.md
+├── Governance/
+└── Project_Product/
+```
+
+`00_System/` is deliberately separate from the 14 knowledge categories. It defines how the
+KnowledgeBase is managed rather than representing another kind of project knowledge.
 
 ## Status principle
 

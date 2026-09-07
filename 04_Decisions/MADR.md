@@ -1,5 +1,10 @@
 # ADR-XXX: [Decision title]
 
+> **Template note:** This is a MADR-based template customized for this KnowledgeBase. The
+> `Validation / evidence` and `Traceability` sections are project-specific additions; they are
+> not part of the stock MADR specification. They connect the ADR to evidence and to the
+> REQ → ADR → DESIGN → TEST traceability chain.
+
 - Status: Proposed
 - Date: YYYY-MM-DD
 - Deciders:
