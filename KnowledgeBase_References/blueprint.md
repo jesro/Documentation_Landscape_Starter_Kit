@@ -22,6 +22,13 @@ Run this BEFORE anything else. For a candidate decision, ask:
 **None apply → don't write an ADR.** Either drop it, or it belongs in an
 architecture doc / reference note instead (Step 1 below).
 
+**Concrete non-examples** (never ADRs, no matter how long they were
+discussed): installing a package, running one test, tweaking a config
+value (e.g. "changed temperature 0.7→0.3"), trying one prompt, or
+downloading/testing a model without a comparison being settled. These
+are experiment/config history — log them as a line in a benchmark or
+experiment note if useful, never as an ADR.
+
 For candidate reference/architecture/roadmap content, there's no gate —
 if it's genuinely reusable knowledge or describes the system, it's worth
 keeping; just route it correctly with Step 1.
@@ -72,11 +79,17 @@ files — an ADR (type 1) that *links to* a reference doc (type 2).
 | Runbook | `06_Runbooks/` | — | `09_Runbooks/` |
 | Diagram | `07_Diagrams/` | — | project's architecture folder |
 
+**Create folders lazily.** Don't pre-build every folder in Step 3/4 up
+front — only create a folder the first time you actually have content
+for it. An empty scaffold recreates the same over-organizing problem at
+the filesystem level.
+
 ---
 
 ## Step 4 — Universal project template
 
-Clone for every new project, any domain:
+Clone for every new project, any domain (create folders as needed, not
+all at once — see the lazy-creation note above):
 
 ```
 <ProjectName>/
@@ -97,12 +110,14 @@ Clone for every new project, any domain:
 
 ## Step 5 — ADR format
 
-Default: **Nygard-lite**.
+Default: **Nygard-lite**, plus a source pointer so the origin is never
+lost without needing to keep the full transcript.
 
 ```
 # ADR-XXXX: <short title>
 Date: <date>
 Status: Accepted
+Source: <conversation date/name this came from>
 ## Context
 <1-3 sentences: what prompted this>
 ## Decision
@@ -118,6 +133,10 @@ options and want that preserved. Skip TOGAF, Tyree & Akerman (IEEE), AWS
 Perspective, and CR→RFC→ADR workflows — all built for large teams
 coordinating review across many people; for solo work, CR/RFC content
 just becomes the ADR's own Context/Alternatives sections.
+
+**Not yet ready for a full ADR?** Log it as `Pending` in the relevant
+`ADR-INDEX.md` (Status column) instead of writing the full record. Only
+promote it to a numbered ADR once it's actually settled.
 
 ---
 
@@ -152,4 +171,7 @@ ADR marked "supersedes," never edit an Accepted one.
 ## Step 8 — Reading old records after a gap
 
 Never read files one by one. Read the index (one line per record, see
-`ADR-INDEX-template.md`), open only what's relevant to today's task.
+`ADR-INDEX-template.md`), open only what's relevant to today's task. The
+Status column doubles as your lightweight decision log — `Pending`,
+`Accepted`, or `Superseded by ADR-XXXX` — no separate decision-log file
+needed.
