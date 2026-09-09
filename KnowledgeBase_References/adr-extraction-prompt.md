@@ -12,10 +12,29 @@ conversation itself.
    model simply downloaded/tested without a comparison being settled.
    Those are experiments/config history, not decisions.
 
+1A. AUTHORITY CHECK — a recommendation is not a decision.
+   Do not treat an AI/assistant recommendation as a user/project
+   decision. Phrases such as "I recommend", "best choice", "you
+   should", "what I would build", "final verdict", or similar indicate
+   a recommendation UNLESS the conversation contains explicit evidence
+   the user accepted, committed to, or adopted it.
+
+   For every candidate decision, distinguish:
+   - AI/assistant recommendation
+   - User/project decision
+   - Decision status: Accepted / Proposed / Pending validation / Rejected
+
+   If user acceptance can't be established from the conversation, do
+   NOT create an Accepted ADR. Classify it as Proposed or Pending
+   instead, or file it under Knowledge/Reference/Project Requirements
+   if that fits better. Never infer acceptance merely because the user
+   kept discussing the recommendation or asked follow-up questions
+   about it — only explicit agreement counts.
+
 2. Sort everything else into these buckets — only include a bucket if
    the conversation actually produced that type of content:
 
-   - DECISIONS (passed the ASR gate)
+   - DECISIONS (passed the ASR gate AND the authority check)
    - KNOWLEDGE / REFERENCE (reusable know-how, comparisons, glossaries)
    - PROJECT REQUIREMENTS (something the app must do)
    - MODEL RECORDS (facts about a specific model: family, license,
@@ -24,6 +43,8 @@ conversation itself.
      a decision)
    - TODO / OPEN QUESTIONS (unresolved, needs a future decision)
    - REJECTED ALTERNATIVES (seriously considered, not chosen, and why)
+   - PROPOSED / PENDING (recommendations discussed but not yet
+     explicitly accepted — see 1A)
    - DISCARD (interesting in the moment, not durable — name it so I
      know it was seen and deliberately dropped, not missed)
 
@@ -41,6 +62,10 @@ Source: <this conversation's date/name>
 <bullets, at least one real downside>
 ## Alternatives Considered
 <bullets, only genuinely-weighed options>
+
+For anything in PROPOSED / PENDING, use the same template but set
+Status: Proposed, and skip writing an ADR number until it's accepted —
+just log it as a row in the relevant ADR-INDEX.md instead.
 
 4. For everything else, just give a one-line description per item plus
    its bucket — don't format non-decisions as ADRs.
