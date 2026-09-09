@@ -2,16 +2,37 @@
 
 ```
 Using the Documentation & Decision Blueprint I've shared, go through this
-conversation and:
+conversation and extract durable knowledge only — do not summarize the
+conversation itself.
 
-1. Apply Step 0 (the ASR gate) — only proceed with items that pass it.
-2. Classify every remaining piece of content by type (Step 1).
-3. For anything that is a Decision, output it as a separate ADR using
-   the Step 5 template exactly:
+1. Apply Step 0 (the ASR gate) to anything that looks like a decision.
+   NOT ADR-worthy, even if discussed at length: which package got
+   installed, a single test run, a config value that got tweaked
+   (e.g. "changed temperature 0.7→0.3"), a one-off prompt tried, a
+   model simply downloaded/tested without a comparison being settled.
+   Those are experiments/config history, not decisions.
+
+2. Sort everything else into these buckets — only include a bucket if
+   the conversation actually produced that type of content:
+
+   - DECISIONS (passed the ASR gate)
+   - KNOWLEDGE / REFERENCE (reusable know-how, comparisons, glossaries)
+   - PROJECT REQUIREMENTS (something the app must do)
+   - MODEL RECORDS (facts about a specific model: family, license,
+     params, GGUF availability, RAM, strengths/weaknesses)
+   - BENCHMARK / EXPERIMENT DEFINITIONS (what was tested, how, not yet
+     a decision)
+   - TODO / OPEN QUESTIONS (unresolved, needs a future decision)
+   - REJECTED ALTERNATIVES (seriously considered, not chosen, and why)
+   - DISCARD (interesting in the moment, not durable — name it so I
+     know it was seen and deliberately dropped, not missed)
+
+3. For each DECISION, output a separate ADR using this exact template:
 
 # ADR-XXXX: <short title>
 Date: <today's date>
 Status: Accepted
+Source: <this conversation's date/name>
 ## Context
 <1-3 sentences>
 ## Decision
@@ -21,14 +42,14 @@ Status: Accepted
 ## Alternatives Considered
 <bullets, only genuinely-weighed options>
 
-4. For anything that is Reference/Architecture/Roadmap/Benchmark/Runbook
-   content, just label it with its type and a one-line description —
-   don't format it as an ADR.
-5. For each item, tell me where it should be filed per Step 2/3 (platform,
-   shared, or project — and which folder).
+4. For everything else, just give a one-line description per item plus
+   its bucket — don't format non-decisions as ADRs.
 
-Do not summarize the whole conversation. Only extract things that were
-actually decided or that constitute real reusable content — not things
-merely discussed or left open. Number ADRs starting from <next free
-number in your index>.
+5. For each item, say where it should be filed per Step 2/3 of the
+   blueprint (platform, shared, or project — and which folder). If a
+   decision isn't ready to be a full ADR yet, say "log as Pending in
+   ADR-INDEX.md" instead of writing the full record.
+
+Do not invent information. Only extract what was actually said. Number
+ADRs starting from <next free number in your index>.
 ```
